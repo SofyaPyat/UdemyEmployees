@@ -3,11 +3,14 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 const EmployeesList = ({data}) => {
 
-    const elements = data.map(item => {
+    const elements = data.map((item, i) => {
+        const {id, ...itemProps} = item
         return (
-            <EmployeesListItem {...item} />
+            <EmployeesListItem key = {i} {...itemProps} />
         );
     })
+
+    console.log(elements);
 
     return (
         <ul className="app-list list-group">
