@@ -1,41 +1,17 @@
 import './employees-list-item.css';
-import { Component } from 'react';
 
-class EmployeesListItem extends Component {
-    
-    constructor (props) {
-        super(props);
-        this.state = {
-            increase: false,
-            like: false
-        }
-    }
+const EmployeesListItem = (props) => {
 
-    onIncrease = () => {
-        this.setState(({increase}) => ({
-            increase: !increase
-        }))
-    }
-
-    onLike = () => {
-        this.setState(({like}) => ({
-            like: !like
-        }))
-    }
-
-    render () {
-        const {name, salary, onDelete} = this.props;
-        const {increase, like} = this.state;
-
-        const classNameCalc = "list-group-item " + (increase? "increase ": "") + (like? "like ": "") + "d-flex justyfy-content-beween";
-
+        const {name, salary, increase, rise, onDelete, onToggleIncrease, onToggleRise} = props;
+        console.log(name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise);
+        const classNameCalc = "list-group-item " + (increase? "increase ": "") + (rise? "like ": "") + "d-flex justyfy-content-beween";
         return (
             <li className= {classNameCalc}>
-                <span className="list-group-item-label" onClick={this.onLike}>{name}</span>
+                <span className="list-group-item-label" onClick={onToggleRise}>{name}</span>
                 <input type="text" className="list-group-item-input" defaultValue={salary + '$'}/>
                 <div className="d-flex justify-content-center align-items-center">
                     <button type = "button"
-                            className="btn-cookie btn-sm" onClick={this.onIncrease}>
+                            className="btn-cookie btn-sm" onClick={onToggleIncrease}>
                         <i className="fas fa-cookie"></i> 
                     </button>
 
@@ -47,7 +23,7 @@ class EmployeesListItem extends Component {
                 </div>
             </li>
         );
-        }
+
 }
 
 export default EmployeesListItem;
